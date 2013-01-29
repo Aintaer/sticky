@@ -71,7 +71,7 @@
     },
     methods = {
       init: function(options) {
-        var o = $.extend(defaults, options);
+        var o = $.extend({}, defaults, options);
         return this.each(function() {
           var stickyElement = $(this);
 
@@ -91,7 +91,7 @@
 
           var stickyWrapper = stickyElement.parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
-          sticked.push({
+          var stickyData = {
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
             stickyElement: stickyElement,
@@ -99,7 +99,10 @@
             stickyWrapper: stickyWrapper,
             className: o.className,
             getWidthFrom: o.getWidthFrom
-          });
+          };
+
+          stickyElement.data('sticky', stickyData);
+          sticked.push(stickyData);
         });
       },
       update: scroller
