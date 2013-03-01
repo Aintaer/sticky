@@ -9,7 +9,6 @@
 // Description: Makes an element on the page stick on the screen as you scroll
 //       It will only set the 'top' and 'position' of your element, you
 //       might need to adjust the width in some cases.
-
 (function($) {
   var defaults = {
       topSpacing: 0,
@@ -73,12 +72,12 @@
       init: function(options) {
         var o = $.extend({}, defaults, options);
         return this.each(function() {
-          var stickyElement = $(this);
-
-          stickyId = stickyElement.attr('id');
+          var stickyElement = $(this),
+          stickyId = stickyElement.attr('id'),
           wrapper = $('<div></div>')
             .attr('id', stickyId + '-sticky-wrapper')
             .addClass(o.wrapperClassName);
+
           stickyElement.wrapAll(wrapper);
 
           if (o.center) {
